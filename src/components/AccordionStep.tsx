@@ -51,7 +51,7 @@ export default function AccordionStep({ meta }: { meta: StepMeta }) {
 
       {isOpen && (
         <div className="flex flex-col gap-4 px-4 pb-4">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {stepProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

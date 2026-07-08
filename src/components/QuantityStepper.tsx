@@ -4,20 +4,16 @@ interface Props {
   qty: number;
   onChange: (qty: number) => void;
   disabled?: boolean;
-  size?: "sm" | "md";
 }
 
 export default function QuantityStepper({
   qty,
   onChange,
   disabled = false,
-  size = "md",
 }: Props) {
-  const dims = size === "sm" ? "h-7 w-7 text-sm" : "h-8 w-8 text-base";
-
   return (
     <div
-      className={`inline-flex items-center rounded-full border border-slate-200 bg-white ${
+      className={`inline-flex items-center ${
         disabled ? "opacity-50" : ""
       }`}
     >
@@ -26,7 +22,7 @@ export default function QuantityStepper({
         aria-label="Decrease quantity"
         disabled={disabled || qty <= 0}
         onClick={() => onChange(qty - 1)}
-        className={`${dims} flex items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:hover:bg-transparent`}
+        className={`h-5 w-5 text-base rounded-lg not-disabled:bg-[#E6EBF0] border border-[#F0F4F7] flex items-center justify-center rounded-sm text-[#525963] disabled:cursor-not-allowed disabled:border-[#F0F4F7] disabled:text-[#CED6DE]`}
       >
         −
       </button>
@@ -38,7 +34,7 @@ export default function QuantityStepper({
         aria-label="Increase quantity"
         disabled={disabled}
         onClick={() => onChange(qty + 1)}
-        className={`${dims} flex items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 disabled:cursor-not-allowed`}
+        className={`h-5 w-5 text-base rounded-lg bg-[#E6EBF0] border border-[#F0F4F7] flex items-center justify-center rounded-sm text-[#525963] disabled:cursor-not-allowed disabled:bg-[#F0F4F7] disabled:text-[#CED6DE]`}
       >
         +
       </button>

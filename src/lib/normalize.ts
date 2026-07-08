@@ -21,7 +21,7 @@ export function normalizeProduct(p: Product): NormalizedProduct {
       {
         id: defaultVariantId(p.id),
         label: "Default",
-        swatch: "",
+        image: p.image,
         qty: p.qty ?? 0,
       },
     ],

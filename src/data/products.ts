@@ -16,15 +16,31 @@ export const PRODUCTS: Product[] = [
     category: "Cameras",
     title: "Wyze Cam v4",
     description: "The cheapest Wyze Cam ever made.",
-    image: "/products/cam-v4.png",
+    image: "/products/cam-v4-white.png",
     learnMoreUrl: "#",
     badge: "Save 20%",
     compareAtPrice: 35.98,
     price: 27.98,
     hasControl: true,
     variants: [
-      { id: "wyze-cam-v4:white", label: "White", swatch: "#F5F5F0", qty: 1 },
-      { id: "wyze-cam-v4:black", label: "Black", swatch: "#2B2B2B", qty: 0 },
+      {
+        id: "wyze-cam-v4:white",
+        label: "White",
+        image: "/products/cam-v4-white.png",
+        qty: 1,
+      },
+      {
+        id: "wyze-cam-v4:grey",
+        label: "Grey",
+        image: "/products/cam-v4-grey.png",
+        qty: 1,
+      },
+      {
+        id: "wyze-cam-v4:black",
+        label: "Black",
+        image: "/products/cam-v4-black.png",
+        qty: 0,
+      },
     ],
   },
   {
@@ -39,7 +55,20 @@ export const PRODUCTS: Product[] = [
     compareAtPrice: 39.98,
     price: 33.98,
     hasControl: true,
-    qty: 2,
+    variants: [
+      {
+        id: "wyze-cam-pan-v3:white",
+        label: "White",
+        image: "/products/cam-pan-v3-white.png",
+        qty: 0,
+      },
+      {
+        id: "wyze-cam-pan-v3:black",
+        label: "Black",
+        image: "/products/cam-pan-v3-black.png",
+        qty: 0,
+      },
+    ],
   },
   {
     id: "wyze-cam-floodlight-v2",
@@ -47,15 +76,25 @@ export const PRODUCTS: Product[] = [
     category: "Cameras",
     title: "Wyze Cam Floodlight v2",
     description: "2K floodlight camera with a 180°-angle view for your garage.",
-    image: "/products/cam-floodlight-v2.png",
+    image: "/products/floodlight-white.png",
     learnMoreUrl: "#",
     badge: "Save 20%",
     compareAtPrice: 99.98,
     price: 79.98,
     hasControl: true,
     variants: [
-      { id: "wyze-cam-floodlight-v2:white", label: "White", swatch: "#F5F5F0", qty: 0 },
-      { id: "wyze-cam-floodlight-v2:black", label: "Black", swatch: "#2B2B2B", qty: 0 },
+      {
+        id: "wyze-cam-floodlight-v2:white",
+        label: "White",
+        image: "/products/cam-floodlight-white.png",
+        qty: 0,
+      },
+      {
+        id: "wyze-cam-floodlight-v2:black",
+        label: "Black",
+        image: "/products/cam-floodlight-black.png",
+        qty: 0,
+      },
     ],
   },
   {
@@ -77,13 +116,23 @@ export const PRODUCTS: Product[] = [
     title: "Wyze Battery Cam Pro",
     description:
       "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
-    image: "/products/battery-cam-pro.png",
+    image: "/products/battery-cam-pro-white.png",
     learnMoreUrl: "#",
     price: 89.98,
     hasControl: true,
     variants: [
-      { id: "wyze-battery-cam-pro:white", label: "White", swatch: "#F5F5F0", qty: 0 },
-      { id: "wyze-battery-cam-pro:black", label: "Black", swatch: "#2B2B2B", qty: 0 },
+      {
+        id: "wyze-battery-cam-pro:white",
+        label: "White",
+        image: "/products/battery-cam-pro-white.png",
+        qty: 0,
+      },
+      {
+        id: "wyze-battery-cam-pro:black",
+        label: "Black",
+        image: "/products/battery-cam-pro-black.png",
+        qty: 0,
+      },
     ],
   },
 

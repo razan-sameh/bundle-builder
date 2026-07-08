@@ -5,7 +5,8 @@ export type Category = "Cameras" | "Sensors" | "Accessories" | "Plan";
 export interface Variant {
   id: string; // unique across the whole catalog, e.g. "wyze-cam-v4:white"
   label: string; // "White"
-  swatch: string; // hex color or small thumbnail url
+  image?: string; // variant-specific product image
+  swatch?: string; // optional hex fallback when no image is available
   qty: number; // seed quantity
 }
 

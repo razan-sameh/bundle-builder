@@ -42,32 +42,38 @@ export default function ReviewPanel() {
               {group.category}
             </p>
             {group.lines.map((line) => (
-              <div key={line.variantId} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white">
-                  <Image src={line.image} alt={line.title} width={32} height={32} />
+              <div
+                key={line.variantId}
+                className="flex flex-col gap-2 rounded-xl bg-white/60 p-3 sm:flex-row sm:items-center sm:gap-3 sm:bg-transparent sm:p-0"
+              >
+                <div className="flex items-center gap-3 sm:contents">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white">
+                    <Image src={line.image} alt={line.title} width={32} height={32} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium text-slate-800">
+                      {line.title}
+                      {line.variantLabel && (
+                        <span className="text-slate-400"> — {line.variantLabel}</span>
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-800">
-                    {line.title}
-                    {line.variantLabel && (
-                      <span className="text-slate-400"> — {line.variantLabel}</span>
-                    )}
-                  </p>
-                </div>
-                <QuantityStepper
-                  size="sm"
-                  qty={line.qty}
-                  disabled={!line.hasControl}
-                  onChange={(qty) => setQty(line.productId, line.variantId, qty)}
-                />
-                <div className="w-20 text-right">
-                  <Price
-                    align="right"
-                    price={line.price}
-                    compareAtPrice={line.compareAtPrice}
-                    suffix={line.priceSuffix}
-                    freeLabel={line.freeLabel}
+                <div className="flex items-center justify-between gap-3 sm:contents">
+                  <QuantityStepper
+                    qty={line.qty}
+                    disabled={!line.hasControl}
+                    onChange={(qty) => setQty(line.productId, line.variantId, qty)}
                   />
+                  <div className="w-20 text-right sm:w-20">
+                    <Price
+                      align="right"
+                      price={line.price}
+                      compareAtPrice={line.compareAtPrice}
+                      suffix={line.priceSuffix}
+                      freeLabel={line.freeLabel}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
