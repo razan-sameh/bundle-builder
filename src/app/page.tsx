@@ -5,12 +5,6 @@ import ReviewPanel from "@/components/ReviewPanel";
 export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8 lg:px-8">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-          Let&apos;s get started!
-        </h1>
-      </div>
-
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px] lg:items-start">
         <div className="flex flex-col gap-3">
           {STEPS.map((meta) => (

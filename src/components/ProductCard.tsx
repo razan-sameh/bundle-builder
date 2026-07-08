@@ -48,7 +48,7 @@ export default function ProductCard({ product }: { product: NormalizedProduct })
         {product.learnMoreUrl && (
           <a
             href={product.learnMoreUrl}
-            className="text-xs font-medium text-indigo-600 hover:underline"
+            className="text-xs font-medium text-[#4e2fd2] hover:underline"
           >
             Learn More
           </a>

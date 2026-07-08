@@ -81,7 +81,7 @@ export default function ReviewPanel() {
       </div>
 
       <div className="flex items-center gap-3 rounded-xl bg-white p-3">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-[#4e2fd2]">
           ✓
         </div>
         <div>
@@ -116,7 +116,7 @@ export default function ReviewPanel() {
       <button
         type="button"
         onClick={() => setCheckedOut(true)}
-        className="rounded-full bg-indigo-600 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
+        className="rounded-full bg-[#4e2fd2] py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
       >
         Checkout
       </button>
@@ -129,7 +129,7 @@ export default function ReviewPanel() {
       <button
         type="button"
         onClick={saveForLater}
-        className="text-center text-xs font-medium text-indigo-600 hover:underline"
+        className="text-center text-xs font-medium text-[#4e2fd2] hover:underline"
       >
         {justSaved ? "Saved ✓" : "Save my system for later"}
       </button>
