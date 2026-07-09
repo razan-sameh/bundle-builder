@@ -14,7 +14,10 @@ export default function AccordionStep({ meta }: { meta: StepMeta }) {
   const nextStep = STEPS.find((s) => s.index === meta.index + 1);
 
   return (
-    <section className={`${isOpen && "bg-[#EDF4FF] rounded-2xl"}`}>
+    <section
+      id={`step-${meta.id}`}
+      className={`${isOpen && "bg-[#EDF4FF] rounded-2xl"}`}
+    >
       <button
         type="button"
         onClick={() => setOpenStep(meta.id)}
@@ -60,7 +63,18 @@ export default function AccordionStep({ meta }: { meta: StepMeta }) {
           {nextStep && (
             <button
               type="button"
-              onClick={() => setOpenStep(nextStep.id)}
+              onClick={() => {
+                setOpenStep(nextStep.id);
+
+                requestAnimationFrame(() => {
+                  document
+                    .getElementById(`step-${nextStep.id}`)
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                });
+              }}
               className="self-center rounded-md border border-[#4e2fd2] px-5 py-1.5 text-sm font-semibold text-[#4e2fd2]"
             >
               Next: {nextStep.title}
