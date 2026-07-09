@@ -76,7 +76,7 @@ export const PRODUCTS: Product[] = [
     category: "Cameras",
     title: "Wyze Cam Floodlight v2",
     description: "2K floodlight camera with a 180°-angle view for your garage.",
-    image: "/products/floodlight-white.png",
+    image: "/products/cam-floodlight-white.png",
     learnMoreUrl: "#",
     badge: "Save 20%",
     compareAtPrice: 99.98,
@@ -199,6 +199,12 @@ export const SHIPPING = {
   freeLabel: "FREE",
 };
 
+export const GUARANTEE = {
+  days: 30,
+  title: "30-day hassle-free returns",
+  description:
+    "If you're not fully satisfied with any item in the bundle, we will return 100%.",
+};
 
 export const FINANCING = {
   label: "as low as $19.19/mo",
