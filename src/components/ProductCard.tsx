@@ -83,8 +83,7 @@ export default function ProductCard({
             compareAtPrice={product.compareAtPrice}
             suffix={product.priceSuffix}
             freeLabel={product.freeLabel}
-            align="right"
-            layout="stacked"
+            isReview={false}
           />
         </div>
       </div>

@@ -109,7 +109,7 @@ function buildReviewLines(products: NormalizedProduct[]): ReviewLine[] {
         variantId: v.id,
         title: p.title,
         variantLabel: p.variants.length > 1 ? v.label : undefined,
-        image: p.image,
+        image: v.image ?? p.image,
         qty: v.qty,
         price: p.price,
         compareAtPrice: p.compareAtPrice,

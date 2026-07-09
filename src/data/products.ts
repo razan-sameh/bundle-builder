@@ -171,7 +171,7 @@ export const PRODUCTS: Product[] = [
     title: "Wyze Sense Hub (Required)",
     description: "The brains of your sensor network. Required for sensors to work.",
     image: "/products/sense-hub.png",
-    price: 0,
+    price: 29.92,
     freeLabel: "FREE",
     hasControl: false, // pre-populated, no add-control in this view
     qty: 1,
@@ -187,26 +187,20 @@ export const PRODUCTS: Product[] = [
     image: "/products/microsd.png",
     price: 34.98,
     compareAtPrice: 44.98,
-    hasControl: false, // pre-populated, no add-control in this view
+    hasControl: true, // pre-populated, no add-control in this view
     qty: 1,
   },
 ];
 
 export const SHIPPING = {
   label: "Fast Shipping",
-  compareAtPrice: 12.99,
+  compareAtPrice: 5.99,
   price: 0,
   freeLabel: "FREE",
 };
 
-export const GUARANTEE = {
-  days: 30,
-  title: "30-day hassle-free returns",
-  description:
-    "If you're not fully satisfied with any item in the bundle, we will return 100%.",
-};
 
 export const FINANCING = {
-  label: "or as low as $17.99/mo with",
+  label: "as low as $19.19/mo",
   provider: "Affirm",
 };

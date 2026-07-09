@@ -6,9 +6,14 @@ import { useBundle } from "@/lib/store";
 import { Category } from "@/lib/types";
 import QuantityStepper from "./QuantityStepper";
 import Price from "./Price";
-import { GUARANTEE, FINANCING, SHIPPING } from "@/data/products";
+import { FINANCING, SHIPPING } from "@/data/products";
 
-const CATEGORY_ORDER: Category[] = ["Cameras", "Sensors", "Accessories", "Plan"];
+const CATEGORY_ORDER: Category[] = [
+  "Cameras",
+  "Sensors",
+  "Accessories",
+  "Plan",
+];
 
 function fmt(n: number) {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -24,21 +29,27 @@ export default function ReviewPanel() {
   })).filter((g) => g.lines.length > 0);
 
   return (
-    <aside className="flex flex-col gap-4 rounded-2xl border border-indigo-100 bg-indigo-50/40 p-5">
-      <div>
-        <p className="text-[11px] font-semibold uppercase tracking-wide text-indigo-500">
+    <aside className="flex flex-col gap-3 rounded-2xl bg-[#EDF4FF] px-5 pt-3">
+      <div className="border-b border-[#CED6DE] pb-2">
+        <p className="text-xs font-medium uppercase text-[#484848] tracking-widest pb-3">
           Review
         </p>
-        <h2 className="text-lg font-bold text-slate-900">Your security system</h2>
-        <p className="mt-1 text-xs text-slate-500">
-          Review your personalized protection system designed to keep what matters most safe.
+        <h2 className="text-lg font-semibold tracking-wider">
+          Your security system
+        </h2>
+        <p className="text-sm font-medium text-[#1F1F1FBF]">
+          Review your personalized protection system designed to keep what
+          matters most safe.
         </p>
       </div>
 
       <div className="flex flex-col gap-5">
         {grouped.map((group) => (
-          <div key={group.category} className="flex flex-col gap-3">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+          <div
+            key={group.category}
+            className="flex flex-col gap-3 border-b border-[#CED6DE] pb-4"
+          >
+            <p className="text-[11px] font-medium uppercase tracking-wide text-[#A8B2BD]">
               {group.category}
             </p>
             {group.lines.map((line) => (
@@ -48,13 +59,21 @@ export default function ReviewPanel() {
               >
                 <div className="flex items-center gap-3 sm:contents">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white">
-                    <Image src={line.image} alt={line.title} width={32} height={32} />
+                    <Image
+                      src={line.image}
+                      alt={line.title}
+                      width={32}
+                      height={32}
+                    />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-slate-800">
                       {line.title}
                       {line.variantLabel && (
-                        <span className="text-slate-400"> — {line.variantLabel}</span>
+                        <span className="text-slate-400">
+                          {" "}
+                          — {line.variantLabel}
+                        </span>
                       )}
                     </p>
                   </div>
@@ -63,15 +82,18 @@ export default function ReviewPanel() {
                   <QuantityStepper
                     qty={line.qty}
                     disabled={!line.hasControl}
-                    onChange={(qty) => setQty(line.productId, line.variantId, qty)}
+                    onChange={(qty) =>
+                      setQty(line.productId, line.variantId, qty)
+                    }
+                    isReview={true}
                   />
                   <div className="w-20 text-right sm:w-20">
                     <Price
-                      align="right"
                       price={line.price}
                       compareAtPrice={line.compareAtPrice}
                       suffix={line.priceSuffix}
                       freeLabel={line.freeLabel}
+                      isReview={true}
                     />
                   </div>
                 </div>
@@ -81,40 +103,58 @@ export default function ReviewPanel() {
         ))}
       </div>
 
-      <div className="flex items-center justify-between border-t border-indigo-100 pt-3 text-sm">
-        <span className="text-slate-600">{SHIPPING.label}</span>
-        <span className="font-semibold text-emerald-600">{SHIPPING.freeLabel}</span>
+      <div className="flex items-center justify-between pt-3">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/icons/shipping.svg" // update to your icon
+            alt="Shipping"
+            width={22}
+            height={22}
+            className="h-10 w-10"
+          />
+
+          <span className="text-sm font-medium text-[#0B0D10]">
+            {SHIPPING.label}
+          </span>
+        </div>
+
+        <Price
+          price={SHIPPING.price}
+          compareAtPrice={SHIPPING.compareAtPrice}
+          freeLabel={SHIPPING.freeLabel}
+          isReview={true}
+        />
       </div>
 
-      <div className="flex items-center gap-3 rounded-xl bg-white p-3">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-[#4e2fd2]">
-          ✓
+      <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/icons/totals.png" // update to your icon
+            alt="Shipping"
+            width={78}
+            height={78}
+            className="h-20 w-20"
+          />
         </div>
-        <div>
-          <p className="text-xs font-semibold text-slate-800">{GUARANTEE.title}</p>
-          <p className="text-[11px] text-slate-500">{GUARANTEE.description}</p>
-        </div>
-      </div>
-
-      <p className="text-xs text-slate-500">
-        {FINANCING.label} <span className="font-semibold text-slate-700">{FINANCING.provider}</span>
-      </p>
-
-      <div className="border-t border-indigo-100 pt-3">
-        <div className="flex items-baseline justify-between">
-          <span className="text-sm font-semibold text-slate-700">Total</span>
-          <div className="flex items-baseline gap-2">
-            {totals.savings > 0 && (
-              <span className="text-xs text-slate-400 line-through">
-                {fmt(totals.compareSubtotal)}
-              </span>
-            )}
-            <span className="text-xl font-bold text-slate-900">{fmt(totals.total)}</span>
+        <div className="flex flex-col items-end gap-1">
+          <div className="flex w-fit items-center  justify-center bg-[#4E2FD2] rounded-sm px-2 mb-2 text-sm text-white tracking-tighter">
+            <p>{FINANCING.label}</p>
           </div>
+          <Price
+            price={totals.total}
+            compareAtPrice={totals.compareSubtotal}
+            isReview={true}
+            layout="inline"
+            isTotal={true}
+          />
         </div>
+      </div>
+
+      <div className="pt-2">
         {totals.savings > 0 && (
-          <p className="mt-1 text-right text-xs font-medium text-emerald-600">
-            Congrats! You&apos;re saving {fmt(totals.savings)} on your security bundle
+          <p className="text-center text-xs font-medium text-[#0AA288] tracking-tighter">
+            Congrats! You&apos;re saving {fmt(totals.savings)} on your security
+            bundle!
           </p>
         )}
       </div>
@@ -122,12 +162,12 @@ export default function ReviewPanel() {
       <button
         type="button"
         onClick={() => setCheckedOut(true)}
-        className="rounded-full bg-[#4e2fd2] py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
+        className="rounded-sm bg-[#4e2fd2] py-2 text-md font-bold text-white "
       >
         Checkout
       </button>
       {checkedOut && (
-        <p className="text-center text-xs font-medium text-emerald-600">
+        <p className="text-center text-xs font-medium text-[#0AA288]">
           This is a prototype — there&apos;s nowhere for checkout to go yet!
         </p>
       )}
@@ -135,7 +175,7 @@ export default function ReviewPanel() {
       <button
         type="button"
         onClick={saveForLater}
-        className="text-center text-xs font-medium text-[#4e2fd2] hover:underline"
+        className="text-center text-sm italic font-base text-[#484848] underline"
       >
         {justSaved ? "Saved ✓" : "Save my system for later"}
       </button>

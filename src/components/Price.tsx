@@ -11,8 +11,10 @@ interface Props {
   compareAtPrice?: number;
   suffix?: string;
   freeLabel?: string;
+  isReview?: boolean;
   align?: "left" | "right";
   layout?: "inline" | "stacked";
+  isTotal?: boolean;
 }
 
 export default function Price({
@@ -20,37 +22,28 @@ export default function Price({
   compareAtPrice,
   suffix,
   freeLabel,
-  align = "left",
-  layout = "inline",
+  isReview = false,
+  layout = "stacked",
+  isTotal= false
 }: Props) {
-  const hasDiscount = compareAtPrice && compareAtPrice > price;
-
-  if (layout === "stacked") {
-    return (
-      <div className={`flex flex-col ${align === "right" ? "items-end" : "items-start"}`}>
-        {hasDiscount && (
-          <span className="text-xs text-red-500 line-through">{fmt(compareAtPrice)}</span>
-        )}
-        <span className="text-base font-semibold text-slate-900">
-          {freeLabel ?? fmt(price)}
-          {suffix && <span className="font-normal text-slate-500">{suffix}</span>}
-        </span>
-      </div>
-    );
-  }
-
+  const hasDiscount = (compareAtPrice && compareAtPrice > price) || !!freeLabel;
   return (
     <div
-      className={`flex items-baseline gap-1.5 ${
-        align === "right" ? "justify-end" : ""
-      }`}
+      className={`${layout === "stacked" ? "flex flex-col items-end" : "flex items-baseline gap-1.5 justify-end"}`}
     >
       {hasDiscount && (
-        <span className="text-xs text-slate-400 line-through">{fmt(compareAtPrice)}</span>
+        <span
+          className={`${isTotal ? "text-lg" : isReview ? "text-sm" : "text-base "} ${isReview ? "text-[#6F7882] " : "text-[#D8392B]  "} line-through`}
+        >
+          {fmt(compareAtPrice ?? price)}
+          {suffix && <span>{suffix}</span>}
+        </span>
       )}
-      <span className="text-sm font-semibold text-slate-900">
+      <span
+        className={`${isTotal ? "text-2xl" : isReview ? "text-sm" : "text-base "} ${isReview ? "font-semibold text-[#4E2FD2]" : "text-[#575757]"}`}
+      >
         {freeLabel ?? fmt(price)}
-        {suffix && <span className="font-normal text-slate-500">{suffix}</span>}
+        {suffix && <span>{suffix}</span>}
       </span>
     </div>
   );
